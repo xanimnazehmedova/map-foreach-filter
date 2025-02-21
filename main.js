@@ -42,10 +42,23 @@ function loadFunc() {
   savedFruits.forEach((fruit) => {
     const li = document.createElement("li");
     li.textContent = fruit;
-    list.appendChild(li)
+    list.appendChild(li);
   });
 }
-loadFunc()
+
+document.getElementById("searchInput").addEventListener("input", () => {
+  const searchValue = this.value.toLowerCase();
+  const items = document.querySelectorAll("fruitList li");
+
+  items.forEach((item) => {
+    if (item.textContent.toLowerCase().includes(searchValue)) {
+      item.computedStyleMap.display = "block";
+    } else {
+      item.computedStyleMap.display = "none";
+    }
+  });
+});
+loadFunc();
 
 // document.getElementById("searchInput").addEventListener("keyup", (e) => {
 //   // e.target.value eyni seydir --> document.getElementById("searchInput").value
